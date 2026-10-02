@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!-- 3. Free tools  (8 s). Shared styles + helpers live in index.html and assets/motion.js. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="tools-template">
+      <style>
+        #tools {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 90px 120px;
+          background: var(--yellow);
+          color: var(--ink);
+        }
+        /* ---------- scene 3: toolkit ---------- */
+        .cards {
+          display: flex;
+          gap: 44px;
+          margin-top: 64px;
+        }
+        .tool {
+          width: 480px;
+          border-radius: 36px;
+          background: var(--cream);
+          color: var(--ink);
+          padding: 46px 40px 44px;
+          text-align: left;
+          box-shadow: 0 18px 0 rgba(27, 16, 54, 0.9);
+          border: 6px solid var(--ink);
+        }
+        .tool .badge {
+          width: 92px;
+          height: 92px;
+          border-radius: 26px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: "JetBrains Mono", monospace;
+          font-weight: 700;
+          font-size: 40px;
+          color: #fff;
+          margin-bottom: 28px;
+        }
+        .tool h3 {
+          font-weight: 900;
+          font-size: 54px;
+          line-height: 1.05;
+          letter-spacing: -0.02em;
+        }
+        .tool .what {
+          font-family: "JetBrains Mono", monospace;
+          font-weight: 700;
+          font-size: 34px;
+          margin-top: 14px;
+        }
+        .tool .note {
+          font-weight: 600;
+          font-size: 28px;
+          margin-top: 18px;
+          color: #4a3d63;
+        }
+        .sticker {
+          position: absolute;
+          right: 46px;
+          bottom: 46px;
+          width: 230px;
+          height: 230px;
+          border-radius: 50%;
+          background: var(--pink);
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          z-index: 3;
+          border: 8px solid var(--ink);
+        }
+        .sticker b {
+          display: block;
+          font-weight: 900;
+          font-size: 92px;
+          line-height: 0.95;
+          letter-spacing: -0.04em;
+        }
+        .sticker span {
+          display: block;
+          font-weight: 800;
+          font-size: 30px;
+          line-height: 1.1;
+        }
+      </style>
+
+      <div data-hf-id="hf-k2th" id="tools" data-composition-id="tools" data-width="1920" data-height="1080" data-duration="8">
+        <div data-hf-id="hf-y6ad" class="layer" id="tools-shapes"></div>
+        <div data-hf-id="hf-ppiy" class="sticker" id="tools-sticker"><b data-hf-id="hf-hpi1">$0</b><span data-hf-id="hf-n6hi">extra tools</span></div>
+        <div data-hf-id="hf-mcm7" class="content">
+          <div data-hf-id="hf-w9gp" class="title split" id="tools-title">Free tools do the heavy lifting</div>
+          <div data-hf-id="hf-5cwd" class="cards">
+            <div data-hf-id="hf-ca0w" class="tool" id="tool-1">
+              <div data-hf-id="hf-k379" class="badge" style="background: var(--violet)">&lt;/&gt;</div>
+              <h3 data-hf-id="hf-gobw">HyperFrames</h3>
+              <div data-hf-id="hf-8dau" class="what">HTML → MP4</div>
+              <div data-hf-id="hf-awlr" class="note">Open source · what this video uses</div>
+            </div>
+            <div data-hf-id="hf-kxwr" class="tool" id="tool-2">
+              <div data-hf-id="hf-51r3" class="badge" style="background: var(--pink)">{ }</div>
+              <h3 data-hf-id="hf-esp3">Remotion</h3>
+              <div data-hf-id="hf-q9ew" class="what">React → MP4</div>
+              <div data-hf-id="hf-kmf6" class="note">Free for individuals &amp; small teams</div>
+            </div>
+            <div data-hf-id="hf-gzsq" class="tool" id="tool-3">
+              <div data-hf-id="hf-zxgx" class="badge" style="background: var(--orange); color: var(--ink)">▶</div>
+              <h3 data-hf-id="hf-ptr0">Chrome + FFmpeg</h3>
+              <div data-hf-id="hf-5vxe" class="what">frame → video</div>
+              <div data-hf-id="hf-thdc" class="note">The free engines doing the rendering</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const D = HF.sceneDuration("tools", 8); // scene length (set in index.html)
+          HF.splitWords(document.getElementById("tools"));
+
+          const t = 0; // times below are seconds from the start of this scene
+          const sh = HF.shapes(document.getElementById("tools-shapes"), [
+            ["circle", 94, 14, 120, "var(--pink)", 0],
+            ["tri", 6, 86, 130, "var(--violet)", -10],
+            ["zig", 62, 93, 150, "var(--orange)", 0],
+            ["ring", 40, 92, 90, "var(--ink)", 0],
+          ]);
+          HF.animateShapes(tl, sh, t + 0.2, D);
+          HF.popWords(tl, "#tools-title", t + 0.25);
+          ["#tool-1", "#tool-2", "#tool-3"].forEach((id, k) => {
+            tl.fromTo(id, { y: 500, rotation: (k - 1) * 10 }, { y: 0, rotation: 0, duration: 0.7, ease: "back.out(1.4)" }, t + 1.0 + k * 0.5);
+            tl.fromTo(
+              id,
+              { scale: 1 },
+              { scale: 1.03, duration: HF.BEAT / 2, ease: "power1.out", yoyo: true, repeat: 2 * Math.floor((D - 3) / HF.BEAT) - 1 },
+              t + 3.0 + (k * HF.BEAT) / 3,
+            );
+          });
+          tl.fromTo("#tools-sticker", { scale: 0, rotation: -200 }, { scale: 1, rotation: 12, duration: 0.8, ease: "back.out(2)" }, t + 3.6);
+          HF.wipes(tl, document.getElementById("tools"), D, ["var(--violet)", "var(--yellow)"], ["var(--pink)", "var(--mint)"]);
+          window.__timelines["tools"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- 5. Even the music is code  (8 s). Shared styles + helpers live in index.html and assets/motion.js. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="music-template">
+      <style>
+        #music {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 90px 120px;
+          background: var(--ink);
+          color: #fff;
+        }
+        /* ---------- scene 5: music ---------- */
+        .layers-row {
+          display: flex;
+          gap: 34px;
+          margin-top: 60px;
+        }
+        .mlayer {
+          width: 360px;
+          height: 250px;
+          border-radius: 32px;
+          border: 5px solid rgba(255, 255, 255, 0.18);
+          background: rgba(255, 255, 255, 0.06);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+          padding: 26px 20px 28px;
+          position: relative;
+          overflow: hidden;
+        }
+        .mlayer .fill {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          display: block;
+        }
+        .mlayer .eq {
+          position: relative;
+          display: flex;
+          align-items: flex-end;
+          gap: 12px;
+          height: 110px;
+          margin-bottom: 22px;
+        }
+        .mlayer .eq b {
+          display: block;
+          width: 30px;
+          height: 110px;
+          border-radius: 8px;
+          background: #fff;
+          transform-origin: bottom center;
+        }
+        .mlayer h4 {
+          position: relative;
+          font-weight: 900;
+          font-size: 46px;
+          letter-spacing: 0.02em;
+          color: #fff;
+        }
+        .big-eq {
+          position: absolute;
+          left: 60px;
+          right: 60px;
+          bottom: 0;
+          height: 200px;
+          display: flex;
+          align-items: flex-end;
+          gap: 14px;
+          z-index: 1;
+        }
+        .big-eq b {
+          display: block;
+          flex: 1;
+          height: 200px;
+          border-radius: 14px 14px 0 0;
+          transform-origin: bottom center;
+          opacity: 0.85;
+        }
+      </style>
+
+      <div data-hf-id="hf-7rw5" id="music" data-composition-id="music" data-width="1920" data-height="1080" data-duration="8">
+        <div data-hf-id="hf-yf2r" class="big-eq" id="music-eq"></div>
+        <div data-hf-id="hf-fzvb" class="content" style="margin-top: -120px">
+          <div data-hf-id="hf-egq8" class="title split" id="music-title">Even the <span data-hf-id="hf-kr8f" class="pill">music</span> is code</div>
+          <div data-hf-id="hf-3rgo" class="lead" id="music-sub" style="margin-top: 22px; color: var(--cream)">A tiny synth Claude wrote. No paid AI. No copyright worries.</div>
+          <div data-hf-id="hf-cqk1" class="layers-row">
+            <div data-hf-id="hf-tmmz" class="mlayer" id="ml-1">
+              <span data-hf-id="hf-38gk" class="fill" style="background: var(--pink)"></span>
+              <div data-hf-id="hf-q0s6" class="eq"><b data-hf-id="hf-xujp"></b><b data-hf-id="hf-ey49"></b><b data-hf-id="hf-g51c"></b><b data-hf-id="hf-fqqb"></b></div>
+              <h4 data-hf-id="hf-kxry">DRUMS</h4>
+            </div>
+            <div data-hf-id="hf-kyr4" class="mlayer" id="ml-2">
+              <span data-hf-id="hf-ar62" class="fill" style="background: var(--orange)"></span>
+              <div data-hf-id="hf-dfbu" class="eq"><b data-hf-id="hf-dr76"></b><b data-hf-id="hf-dcw5"></b><b data-hf-id="hf-ejt8"></b><b data-hf-id="hf-e5i7"></b></div>
+              <h4 data-hf-id="hf-5gj2">BASS</h4>
+            </div>
+            <div data-hf-id="hf-lqex" class="mlayer" id="ml-3">
+              <span data-hf-id="hf-2dkr" class="fill" style="background: var(--violet)"></span>
+              <div data-hf-id="hf-dtmv" class="eq"><b data-hf-id="hf-c5z2"></b><b data-hf-id="hf-bro1"></b><b data-hf-id="hf-yhbf"></b><b data-hf-id="hf-yvmg"></b></div>
+              <h4 data-hf-id="hf-f5eu">CHORDS</h4>
+            </div>
+            <div data-hf-id="hf-d2j2" class="mlayer" id="ml-4">
+              <span data-hf-id="hf-r4f1" class="fill" style="background: #0fa98f"></span>
+              <div data-hf-id="hf-e7xw" class="eq"><b data-hf-id="hf-xopd"></b><b data-hf-id="hf-y30e"></b><b data-hf-id="hf-ww3b"></b><b data-hf-id="hf-xaec"></b></div>
+              <h4 data-hf-id="hf-no11">MELODY</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const D = HF.sceneDuration("music", 8); // scene length (set in index.html)
+          HF.splitWords(document.getElementById("music"));
+
+          const t = 0; // times below are seconds from the start of this scene
+          const d = D;
+          HF.popWords(tl, "#music-title", t + 0.15);
+          tl.fromTo("#music-sub", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, t + 0.9);
+          // a layer lights up every bar, exactly when it joins the music
+          [1, 2, 3, 4].forEach((n, k) => {
+            const on = t + k * 2; // 32, 34, 36, 38 s
+            const id = `#ml-${n}`;
+            tl.fromTo(id, { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2)" }, t + 0.3 + k * 0.12);
+            tl.fromTo(`${id} .fill`, { opacity: 0 }, { opacity: 1, duration: 0.15 }, on);
+            tl.fromTo(id, { scale: 1 }, { scale: 1.12, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, on);
+            HF.$$(`${id} .eq b`).forEach((bar, j) => {
+              const beats = Math.floor((t + d - on) / HF.BEAT);
+              tl.fromTo(
+                bar,
+                { scaleY: 0.3 },
+                { scaleY: 0.55 + (0.45 * ((j * 37 + n * 11) % 10)) / 10, duration: HF.BEAT / 2, ease: "power2.out", yoyo: true, repeat: beats * 2 - 1 },
+                on,
+              );
+            });
+          });
+          // big equalizer along the bottom, pumping on every beat
+          const eq = HF.$("#music-eq");
+          const cols = ["var(--pink)", "var(--orange)", "var(--yellow)", "var(--mint)", "var(--violet)"];
+          for (let k = 0; k < 28; k++) {
+            const b = document.createElement("b");
+            b.style.background = cols[k % cols.length];
+            eq.appendChild(b);
+            const h = 0.25 + 0.75 * Math.abs(Math.sin(k * 0.7));
+            tl.fromTo(b, { scaleY: 0.3 * h }, { scaleY: h, duration: HF.BEAT / 2, ease: "power3.out", yoyo: true, repeat: Math.floor(d / HF.BEAT) * 2 - 1 }, t);
+          }
+          HF.wipes(tl, document.getElementById("music"), D, ["var(--yellow)", "var(--ink)"], ["var(--pink)", "var(--cream)"]);
+          window.__timelines["music"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- 2. The trick: a video is a web page that moves  (8 s). Shared styles + helpers live in index.html and assets/motion.js. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="idea-template">
+      <style>
+        #idea {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 90px 120px;
+          background: var(--pink);
+          color: #fff;
+        }
+        /* ---------- scene 2: code -> video ---------- */
+        .idea-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 56px;
+          margin-top: 54px;
+        }
+        .code-card {
+          width: 700px;
+          height: 380px;
+          border-radius: 32px;
+          background: var(--ink);
+          padding: 34px 40px;
+          text-align: left;
+          box-shadow: 0 24px 0 rgba(0, 0, 0, 0.18);
+        }
+        .dots3 {
+          display: flex;
+          gap: 12px;
+          margin-bottom: 30px;
+        }
+        .dots3 i {
+          display: block;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+        }
+        .code-line {
+          font-size: 36px;
+          line-height: 1.7;
+          white-space: nowrap;
+          overflow: hidden;
+          width: 0;
+          color: var(--cream);
+        }
+        .tok-tag {
+          color: var(--pink);
+        }
+        .tok-fn {
+          color: var(--mint);
+        }
+        .tok-str {
+          color: var(--yellow);
+        }
+        .arrow {
+          width: 150px;
+          height: 34px;
+          display: block;
+          position: relative;
+        }
+        .arrow b {
+          position: absolute;
+          left: 0;
+          top: 11px;
+          width: 120px;
+          height: 12px;
+          border-radius: 6px;
+          background: var(--cream);
+          transform-origin: left center;
+          display: block;
+        }
+        .arrow em {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 40px;
+          height: 34px;
+          background: var(--cream);
+          clip-path: polygon(0 0, 100% 50%, 0 100%);
+          display: block;
+        }
+        .video-card {
+          width: 640px;
+          height: 380px;
+          border-radius: 32px;
+          background: var(--cream);
+          color: var(--ink);
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 24px 0 rgba(0, 0, 0, 0.18);
+        }
+        .video-screen {
+          position: absolute;
+          left: 24px;
+          right: 24px;
+          top: 24px;
+          bottom: 74px;
+          border-radius: 18px;
+          background: var(--violet);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .video-hello {
+          display: block;
+          color: #fff;
+          font-weight: 900;
+          font-size: 80px;
+          letter-spacing: -0.03em;
+        }
+        .video-bar {
+          position: absolute;
+          left: 92px;
+          right: 34px;
+          bottom: 32px;
+          height: 14px;
+          border-radius: 7px;
+          background: rgba(27, 16, 54, 0.18);
+          overflow: hidden;
+        }
+        .video-bar b {
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: var(--pink);
+          transform-origin: left center;
+        }
+        .video-play {
+          position: absolute;
+          left: 34px;
+          bottom: 25px;
+          width: 30px;
+          height: 30px;
+          background: var(--ink);
+          clip-path: polygon(10% 0, 100% 50%, 10% 100%);
+        }
+      </style>
+
+      <div data-hf-id="hf-di8b" id="idea" data-composition-id="idea" data-width="1920" data-height="1080" data-duration="8">
+        <div data-hf-id="hf-h6g3" class="layer" id="idea-shapes"></div>
+        <div data-hf-id="hf-mcm7" class="content">
+          <div data-hf-id="hf-8koh" class="title split" id="idea-title">The trick: a video is a web page that moves.</div>
+          <div data-hf-id="hf-nghm" class="idea-row">
+            <div data-hf-id="hf-gabp" class="code-card" id="idea-code">
+              <div data-hf-id="hf-efdb" class="dots3"><i data-hf-id="hf-zdr9" style="background: var(--pink)"></i><i data-hf-id="hf-7oyx" style="background: var(--yellow)"></i><i data-hf-id="hf-n8zd" style="background: var(--mint)"></i></div>
+              <div data-hf-id="hf-hqxs" class="code-line mono"><span data-hf-id="hf-60yd" class="tok-tag">&lt;h1&gt;</span>Hello!<span data-hf-id="hf-2xmi" class="tok-tag">&lt;/h1&gt;</span></div>
+              <div data-hf-id="hf-qwm3" class="code-line mono"><span data-hf-id="hf-3lbp" class="tok-fn">gsap</span>.to(<span data-hf-id="hf-l2ru" class="tok-str">"h1"</span>, {</div>
+              <div data-hf-id="hf-o694" class="code-line mono">&#160;&#160;scale: <span data-hf-id="hf-5b6e" class="tok-str">1.6</span>, rotate: <span data-hf-id="hf-fiuq" class="tok-str">-8</span></div>
+              <div data-hf-id="hf-gvw6" class="code-line mono">});</div>
+            </div>
+            <div data-hf-id="hf-j8n4" class="arrow" id="idea-arrow"><b data-hf-id="hf-xujp"></b><em data-hf-id="hf-2lav"></em></div>
+            <div data-hf-id="hf-r4z5" class="video-card" id="idea-video">
+              <div data-hf-id="hf-wovu" class="video-screen"><span data-hf-id="hf-kmri" class="video-hello" id="idea-hello">Hello!</span></div>
+              <div data-hf-id="hf-bes4" class="video-play"></div>
+              <div data-hf-id="hf-taz5" class="video-bar"><b data-hf-id="hf-qtxn" id="idea-bar"></b></div>
+            </div>
+          </div>
+          <div data-hf-id="hf-12y9" class="chip small" id="idea-cap" style="margin-top: 54px">Claude writes the code &#160;→&#160; a free renderer records it as an MP4</div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const D = HF.sceneDuration("idea", 8); // scene length (set in index.html)
+          HF.splitWords(document.getElementById("idea"));
+
+          const t = 0; // times below are seconds from the start of this scene
+          const sh = HF.shapes(document.getElementById("idea-shapes"), [
+            ["ring", 5, 52, 130, "var(--yellow)", 0],
+            ["circle", 95, 86, 160, "var(--violet)", 0],
+            ["plus", 94, 14, 100, "var(--cream)", 0],
+            ["dots", 4, 84, 140, "var(--yellow)", 0],
+          ]);
+          HF.animateShapes(tl, sh, t + 0.2, D);
+          HF.popWords(tl, "#idea-title", t + 0.25, { stagger: 0.07 });
+          tl.fromTo("#idea-code", { x: -300, opacity: 0, rotation: -6 }, { x: 0, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.6)" }, t + 1.2);
+          HF.$$("#idea-code .code-line").forEach((line, k) => {
+            tl.fromTo(line, { width: 0 }, { width: 640, duration: 0.45, ease: "steps(18)" }, t + 1.7 + k * 0.45);
+          });
+          tl.fromTo("#idea-arrow b", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power3.out" }, t + 3.6);
+          tl.fromTo("#idea-arrow em", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(3)" }, t + 3.8);
+          tl.fromTo(
+            "#idea-video",
+            { scale: 0.3, opacity: 0, rotation: 8 },
+            { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" },
+            t + 4.0,
+          );
+          tl.fromTo("#idea-hello", { scale: 1, rotation: 0 }, { scale: 1.6, rotation: -8, duration: 0.8, ease: "elastic.out(1, 0.45)" }, t + 4.6);
+          tl.fromTo("#idea-bar", { scaleX: 0 }, { scaleX: 1, duration: 3.4, ease: "none" }, t + 4.4);
+          HF.pop(tl, "#idea-cap", t + 5.0);
+          HF.wipes(tl, document.getElementById("idea"), D, ["var(--yellow)", "var(--pink)"], ["var(--violet)", "var(--yellow)"]);
+          window.__timelines["idea"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

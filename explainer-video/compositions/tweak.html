@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- 6. Tweak anything  (10 s). Shared styles + helpers live in index.html and assets/motion.js. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="tweak-template">
+      <style>
+        #tweak {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 90px 120px;
+          background: var(--cream);
+          color: var(--ink);
+        }
+        /* ---------- scene 6: tweak ---------- */
+        .tweak-row {
+          display: flex;
+          gap: 60px;
+          margin-top: 56px;
+          align-items: center;
+        }
+        .settings {
+          width: 900px;
+          border-radius: 32px;
+          background: var(--ink);
+          color: var(--cream);
+          padding: 40px 44px;
+          text-align: left;
+        }
+        .setting {
+          position: relative;
+          display: flex;
+          align-items: center;
+          font-size: 38px;
+          height: 96px;
+          padding: 0 24px;
+          border-radius: 18px;
+        }
+        .setting .hlbg {
+          position: absolute;
+          inset: 0;
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.12);
+          opacity: 0;
+          display: block;
+        }
+        .setting .k {
+          position: relative;
+          width: 270px;
+          color: var(--mint);
+        }
+        .setting .v {
+          position: relative;
+          display: inline-block;
+          width: 470px;
+          height: 54px;
+        }
+        .setting .v span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          white-space: nowrap;
+          color: var(--yellow);
+        }
+        .swatch {
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          vertical-align: -4px;
+          margin-right: 14px;
+          border: 3px solid var(--cream);
+        }
+        .preview {
+          width: 640px;
+          height: 400px;
+          border-radius: 32px;
+          position: relative;
+          overflow: hidden;
+          border: 8px solid var(--ink);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 34px;
+        }
+        .preview .pbg {
+          position: absolute;
+          inset: 0;
+          display: block;
+        }
+        .preview .pbg2 {
+          position: absolute;
+          inset: 0;
+          display: block;
+          opacity: 0;
+        }
+        .preview .ptext {
+          position: relative;
+          width: 300px;
+          height: 110px;
+        }
+        .preview .ptext span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 300px;
+          text-align: center;
+          font-weight: 900;
+          font-size: 92px;
+          line-height: 110px;
+          color: #fff;
+          letter-spacing: -0.03em;
+        }
+        .spinner {
+          position: relative;
+          width: 120px;
+          height: 120px;
+          display: block;
+        }
+        .spinner i {
+          position: absolute;
+          inset: 0;
+          display: block;
+          background: var(--yellow);
+          clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        .ask {
+          margin-top: 56px;
+          display: flex;
+          align-items: center;
+          gap: 26px;
+        }
+        .bubble {
+          background: var(--violet);
+          color: #fff;
+          font-weight: 800;
+          font-size: 40px;
+          padding: 20px 40px;
+          border-radius: 40px 40px 40px 8px;
+        }
+        .ask .then {
+          font-weight: 800;
+          font-size: 38px;
+        }
+      </style>
+
+      <div data-hf-id="hf-lbe4" id="tweak" data-composition-id="tweak" data-width="1920" data-height="1080" data-duration="10">
+        <div data-hf-id="hf-w99e" class="layer" id="tweak-shapes"></div>
+        <div data-hf-id="hf-mcm7" class="content">
+          <div data-hf-id="hf-y422" class="title split" id="tweak-title">Want changes? Just tweak it.</div>
+          <div data-hf-id="hf-qhsb" class="tweak-row">
+            <div data-hf-id="hf-bwbk" class="settings mono" id="tweak-settings">
+              <div data-hf-id="hf-kxg8" class="setting" id="set-1">
+                <span data-hf-id="hf-eex0" class="hlbg"></span><span data-hf-id="hf-aa0j" class="k">color:</span><span data-hf-id="hf-gipt" class="v"><span data-hf-id="hf-lv5n" class="a"><i data-hf-id="hf-hlod" class="swatch" style="background: var(--violet)"></i>"#5B2EFF"</span><span data-hf-id="hf-iyvf" class="b"><i data-hf-id="hf-wp8m" class="swatch" style="background: var(--pink)"></i>"#FF2E7E"</span></span>
+              </div>
+              <div data-hf-id="hf-tlc3" class="setting" id="set-2">
+                <span data-hf-id="hf-x16k" class="hlbg"></span><span data-hf-id="hf-way0" class="k">title:</span><span data-hf-id="hf-9jv9" class="v"><span data-hf-id="hf-sg4v" class="a">"Hello!"</span><span data-hf-id="hf-wj3k" class="b">"Hola!"</span></span>
+              </div>
+              <div data-hf-id="hf-pn82" class="setting" id="set-3">
+                <span data-hf-id="hf-vu9h" class="hlbg"></span><span data-hf-id="hf-ogdb" class="k">speed:</span><span data-hf-id="hf-aqsc" class="v"><span data-hf-id="hf-n94n" class="a">1x</span><span data-hf-id="hf-6t3r" class="b">3x faster</span></span>
+              </div>
+            </div>
+            <div data-hf-id="hf-loll" class="preview" id="tweak-preview">
+              <span data-hf-id="hf-bgqz" class="pbg" style="background: var(--violet)"></span>
+              <span data-hf-id="hf-pm0a" class="pbg2" style="background: var(--pink)"></span>
+              <div data-hf-id="hf-cpcd" class="ptext"><span data-hf-id="hf-ba7p" class="a">Hello!</span><span data-hf-id="hf-rbqq" class="b">Hola!</span></div>
+              <div data-hf-id="hf-dq70" class="spinner" id="tweak-spin"><i data-hf-id="hf-wt6k"></i></div>
+            </div>
+          </div>
+          <div data-hf-id="hf-4k3f" class="ask" id="tweak-ask">
+            <div data-hf-id="hf-n0y6" class="bubble">“Make the title bigger”</div>
+            <div data-hf-id="hf-wez3" class="then">→ Claude edits &amp; re-renders</div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const D = HF.sceneDuration("tweak", 10); // scene length (set in index.html)
+          HF.splitWords(document.getElementById("tweak"));
+
+          const t = 0; // times below are seconds from the start of this scene
+          const sh = HF.shapes(document.getElementById("tweak-shapes"), [
+            ["circle", 4, 12, 110, "var(--mint)", 0],
+            ["zig", 94, 10, 150, "var(--pink)", 0],
+            ["ring", 95, 88, 130, "var(--violet)", 0],
+            ["square", 5, 88, 90, "var(--yellow)", 15],
+          ]);
+          HF.animateShapes(tl, sh, t + 0.2, D);
+          HF.popWords(tl, "#tweak-title", t + 0.2);
+          tl.fromTo("#tweak-settings", { x: -400, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" }, t + 1.0);
+          tl.fromTo("#tweak-preview", { x: 400, opacity: 0, scale: 1, rotation: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "back.out(1.5)" }, t + 1.15);
+          HF.$$("#tweak-settings .b, #tweak-preview .ptext .b").forEach((el) => tl.set(el, { opacity: 0 }, t));
+          // spinner: slow, then 3x faster after the speed tweak
+          tl.fromTo("#tweak-spin", { rotation: 0 }, { rotation: 180, duration: 5.4, ease: "none" }, t + 1.2);
+          tl.to("#tweak-spin", { rotation: 180 + 3 * 120, duration: 3.4, ease: "none" }, t + 6.61);
+          const swaps = [
+            [1, 2.0, () => tl.fromTo("#tweak-preview .pbg2", { opacity: 0 }, { opacity: 1, duration: 0.3 }, t + 2.5)],
+            [
+              2,
+              3.8,
+              () => {
+                tl.to("#tweak-preview .ptext .a", { opacity: 0, y: -40, duration: 0.25 }, t + 4.3);
+                tl.fromTo("#tweak-preview .ptext .b", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, t + 4.4);
+              },
+            ],
+            [3, 5.6, () => {}],
+          ];
+          swaps.forEach(([n, st, effect]) => {
+            const id = `#set-${n}`;
+            tl.fromTo(`${id} .hlbg`, { opacity: 0 }, { opacity: 1, duration: 0.2 }, t + st);
+            tl.to(`${id} .v .a`, { opacity: 0, y: -30, duration: 0.2 }, t + st + 0.4);
+            tl.fromTo(`${id} .v .b`, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, t + st + 0.5);
+            tl.to(`${id} .hlbg`, { opacity: 0, duration: 0.3 }, t + st + 1.4);
+            effect();
+          });
+          tl.to("#tweak-preview", { scale: 1.06, duration: 0.15, yoyo: true, repeat: 1 }, t + 2.5);
+          tl.to("#tweak-preview", { rotation: 2, duration: 0.15, yoyo: true, repeat: 1 }, t + 4.4);
+          HF.pop(tl, "#tweak-ask", t + 7.2);
+          HF.wipes(tl, document.getElementById("tweak"), D, ["var(--pink)", "var(--cream)"], ["var(--mint)", "var(--violet)"]);
+          window.__timelines["tweak"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

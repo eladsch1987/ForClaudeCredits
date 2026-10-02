@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- 1. Hook: Make videos with code?  (6 s). Shared styles + helpers live in index.html and assets/motion.js. -->
+<html lang="en" data-composition-variables='[{"id":"headline","type":"string","label":"Headline","default":"Make videos"}]'>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="hook-template">
+      <style>
+        #hook {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 90px 120px;
+          background: var(--violet);
+          color: #fff;
+        }
+      </style>
+
+      <div data-hf-id="hf-ihq5" id="hook" data-composition-id="hook" data-width="1920" data-height="1080" data-duration="6">
+        <div data-hf-id="hf-4zbb" class="layer" id="hook-shapes"></div>
+        <div data-hf-id="hf-wc8c" class="content" id="hook-content">
+          <div data-hf-id="hf-cb7b" class="mega split" id="hook-l1">Make videos</div>
+          <div data-hf-id="hf-3wha" class="mega split" id="hook-l2" style="margin-top: 26px">with <span data-hf-id="hf-7y8a" class="pill">code?</span></div>
+          <div data-hf-id="hf-ucqj" class="lead split" id="hook-sub" style="margin-top: 50px">No camera. No editing app. Just Claude.</div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const D = HF.sceneDuration("hook", 6); // scene length (set in index.html)
+          // Text variable (editable in Studio) goes in before the words are split
+          const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+          if (vars.headline) HF.$("#hook-l1").textContent = vars.headline;
+          HF.splitWords(document.getElementById("hook"));
+
+          const t = 0; // times below are seconds from the start of this scene
+          const sh = HF.shapes(document.getElementById("hook-shapes"), [
+            ["circle", 12, 22, 150, "var(--pink)", 0],
+            ["ring", 86, 20, 170, "var(--yellow)", 0],
+            ["tri", 88, 78, 150, "var(--mint)", 15],
+            ["plus", 10, 78, 120, "var(--yellow)", 10],
+            ["dots", 76, 50, 140, "var(--cream)", 0],
+            ["zig", 8, 52, 160, "var(--mint)", -10],
+            ["square", 55, 12, 70, "var(--orange)", 20],
+            ["circle", 45, 88, 60, "var(--yellow)", 0],
+          ]);
+          HF.animateShapes(tl, sh, t + 0.1, D);
+          HF.popWords(tl, "#hook-l1", t + 0.15, { stagger: 0.12, d: 0.6 });
+          HF.popWords(tl, "#hook-l2", t + 0.75, { stagger: 0.14, d: 0.6 });
+          tl.fromTo("#hook-l2 .pill", { rotation: 0, scale: 1 }, { rotation: -4, scale: 1.08, duration: 0.3, ease: "back.out(3)" }, t + 1.7);
+          HF.popWords(tl, "#hook-sub", t + 2.0, { stagger: 0.07, d: 0.45 });
+          // tension build into the drop at 6 s
+          tl.fromTo("#hook-content", { scale: 1 }, { scale: 1.12, duration: 2, ease: "power2.in" }, D - 2);
+          HF.wipes(tl, document.getElementById("hook"), D, null, ["var(--yellow)", "var(--pink)"]);
+          window.__timelines["hook"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

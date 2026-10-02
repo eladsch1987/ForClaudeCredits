@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!-- 7. Skills you need  (6 s). Shared styles + helpers live in index.html and assets/motion.js. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template id="skills-template">
+      <style>
+        #skills {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 90px 120px;
+          background: var(--violet);
+          color: #fff;
+        }
+        /* ---------- scene 7: skills ---------- */
+        .cols {
+          display: flex;
+          gap: 80px;
+          margin-top: 64px;
+        }
+        .col {
+          width: 700px;
+          border-radius: 36px;
+          padding: 40px 50px 30px;
+          text-align: left;
+        }
+        .col.need {
+          background: var(--cream);
+          color: var(--ink);
+        }
+        .col.dont {
+          background: rgba(255, 255, 255, 0.1);
+          border: 5px dashed rgba(255, 255, 255, 0.4);
+        }
+        .col h4 {
+          font-weight: 900;
+          font-size: 44px;
+          margin-bottom: 18px;
+          letter-spacing: -0.01em;
+        }
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 28px;
+          font-weight: 800;
+          font-size: 50px;
+          height: 96px;
+        }
+        .tick {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: var(--mint);
+          position: relative;
+          flex: none;
+          display: block;
+        }
+        .tick::after {
+          content: "";
+          position: absolute;
+          left: 18px;
+          top: 12px;
+          width: 18px;
+          height: 32px;
+          border-right: 8px solid var(--ink);
+          border-bottom: 8px solid var(--ink);
+          transform: rotate(45deg);
+        }
+        .cross {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.18);
+          flex: none;
+          position: relative;
+          display: block;
+        }
+        .cross::before,
+        .cross::after {
+          content: "";
+          position: absolute;
+          left: 29px;
+          top: 12px;
+          width: 7px;
+          height: 40px;
+          border-radius: 4px;
+          background: #fff;
+          transform: rotate(45deg);
+        }
+        .cross::after {
+          transform: rotate(-45deg);
+        }
+        .strike-wrap {
+          position: relative;
+          display: inline-block;
+        }
+        .strike {
+          position: absolute;
+          left: -8px;
+          right: -8px;
+          top: 52%;
+          height: 9px;
+          border-radius: 5px;
+          background: var(--yellow);
+          transform-origin: left center;
+          display: block;
+        }
+      </style>
+
+      <div data-hf-id="hf-oaeb" id="skills" data-composition-id="skills" data-width="1920" data-height="1080" data-duration="6">
+        <div data-hf-id="hf-434i" class="layer" id="skills-shapes"></div>
+        <div data-hf-id="hf-qobn" class="content" id="skills-content">
+          <div data-hf-id="hf-jgv5" class="title split" id="skills-title">Skills you actually need</div>
+          <div data-hf-id="hf-6ra9" class="cols">
+            <div data-hf-id="hf-py5z" class="col need" id="col-need">
+              <h4 data-hf-id="hf-fjrw">You need</h4>
+              <div data-hf-id="hf-gp91" class="item"><span data-hf-id="hf-coyi" class="tick"></span>An idea</div>
+              <div data-hf-id="hf-0krn" class="item"><span data-hf-id="hf-ptha" class="tick"></span>Plain English</div>
+              <div data-hf-id="hf-q1ss" class="item"><span data-hf-id="hf-q7sb" class="tick"></span>Claude Code</div>
+            </div>
+            <div data-hf-id="hf-ukuj" class="col dont" id="col-dont">
+              <h4 data-hf-id="hf-xx6i">You don't need</h4>
+              <div data-hf-id="hf-fubx" class="item">
+                <span data-hf-id="hf-wn8f" class="cross"></span><span data-hf-id="hf-kaoc" class="strike-wrap">Design skills<b data-hf-id="hf-9cab" class="strike"></b></span>
+              </div>
+              <div data-hf-id="hf-f2ip" class="item">
+                <span data-hf-id="hf-hvrz" class="cross"></span><span data-hf-id="hf-o73r" class="strike-wrap">Video editing<b data-hf-id="hf-v5xv" class="strike"></b></span>
+              </div>
+              <div data-hf-id="hf-g9fs" class="item">
+                <span data-hf-id="hf-hhgy" class="cross"></span><span data-hf-id="hf-rgjb" class="strike-wrap">Paid AI tools<b data-hf-id="hf-urmu" class="strike"></b></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const D = HF.sceneDuration("skills", 6); // scene length (set in index.html)
+          HF.splitWords(document.getElementById("skills"));
+
+          const t = 0; // times below are seconds from the start of this scene
+          const sh = HF.shapes(document.getElementById("skills-shapes"), [
+            ["ring", 5, 15, 120, "var(--pink)", 0],
+            ["plus", 95, 14, 110, "var(--mint)", 0],
+            ["circle", 95, 88, 120, "var(--yellow)", 0],
+            ["dots", 5, 86, 130, "var(--cream)", 0],
+          ]);
+          HF.animateShapes(tl, sh, t + 0.1, D);
+          HF.popWords(tl, "#skills-title", t + 0.15);
+          tl.fromTo("#col-need", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, t + 0.6);
+          tl.fromTo("#col-dont", { y: 300, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, t + 0.75);
+          HF.$$("#col-need .tick").forEach((el, k) => tl.fromTo(el, { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(3)" }, t + 1.1 + k * 0.4));
+          HF.$$("#col-dont .strike").forEach((el, k) => tl.fromTo(el, { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power3.out" }, t + 2.3 + k * 0.4));
+          // build-up into the final drop
+          tl.fromTo("#skills-content", { scale: 1 }, { scale: 1.08, duration: 2, ease: "power2.in" }, D - 2);
+          HF.wipes(tl, document.getElementById("skills"), D, ["var(--mint)", "var(--violet)"], ["var(--yellow)", "var(--pink)"]);
+          window.__timelines["skills"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
