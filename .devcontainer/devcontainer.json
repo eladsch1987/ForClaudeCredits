@@ -1,0 +1,26 @@
+{
+  // GitHub Codespaces setup: opens HyperFrames Studio in your browser,
+  // with Node.js 22, FFmpeg and the libraries Chrome needs for rendering.
+  "name": "Make videos with code (HyperFrames Studio)",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+
+  // Runs once, when the codespace is created
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  // Runs every time you open the codespace: starts Studio in the background
+  "postAttachCommand": "cd explainer-video && npm run studio",
+
+  "forwardPorts": [3002],
+  "portsAttributes": {
+    "3002": {
+      "label": "HyperFrames Studio",
+      "onAutoForward": "openBrowser"
+    }
+  },
+
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["explainer-video/TWEAKING.md"]
+    }
+  }
+}

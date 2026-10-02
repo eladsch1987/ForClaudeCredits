@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "studio": "npx --yes hyperframes@0.8.111 preview --background --no-open",
     "dev": "npx --yes hyperframes@0.8.111 preview",
     "check": "npx --yes hyperframes@0.8.111 check",
     "render": "npx --yes hyperframes@0.8.111 render",

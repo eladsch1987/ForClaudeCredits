@@ -2,7 +2,20 @@
 
 Everything in this video is code: the visuals are web pages (one per scene) and the music is a small script (`music/compose.mjs`). You can change things three ways: click around in **HyperFrames Studio**, edit the files in any text editor, or ask Claude.
 
-## Setup (once)
+## Setup
+
+### In your browser, with GitHub Codespaces (no download)
+
+1. Open [this link](https://codespaces.new/eladsch1987/ForClaudeCredits?ref=ccr-f1f2de7d-e8txg3) (it picks the right branch) and click **Create codespace**.
+2. The first time takes a few minutes: it installs Node.js, FFmpeg and a rendering browser. Watch the progress in the terminal at the bottom.
+3. Studio starts by itself and opens in a new browser tab. If the tab doesn't open, go to the **Ports** tab at the bottom and click the globe icon next to **HyperFrames Studio (3002)**. If your browser blocks the pop-up, allow it.
+4. If Studio isn't running (for example after a restart), type this in the terminal: `cd explainer-video && npm run studio`
+
+**Saving your work:** Studio writes your edits into the files inside the codespace. To keep them in GitHub (and let Claude see them), click the **Source Control** icon on the left (the branching icon), type a short note like "changed colors", click **Commit**, then **Sync Changes**.
+
+**Cost:** free personal GitHub accounts include 120 core-hours a month (about 60 hours on the default 2-core machine) and 15 GB of storage. A codespace stops itself after 30 minutes of inactivity. When you're finished for good, delete it at [github.com/codespaces](https://github.com/codespaces) so it stops using storage.
+
+### On your own computer
 
 Install **Node.js 22+** and **FFmpeg** (both free), download this repo, and open a terminal in the `explainer-video` folder.
 
@@ -15,7 +28,7 @@ node music/compose.mjs      # rebuild the music after changing it
 
 ## Option 1: edit visually in Studio
 
-`npx hyperframes preview` opens Studio:
+Open Studio (in a codespace it opens by itself; on your computer run `npx hyperframes preview`):
 
 - **Timeline (bottom):** one block per scene (Hook, Idea, Tools, How, Music, Tweak, Skills, Outro), plus the progress bar and the music. Drag a block to move a scene, drag its edge to make it longer or shorter, or click the eye icon to hide it. The colored wipe between scenes is part of each scene, so it moves along.
 - **Canvas (middle):** click an element to select it, then change it in the **Design** panel on the right.
