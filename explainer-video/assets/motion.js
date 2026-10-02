@@ -17,7 +17,9 @@ window.HF = (() => {
     return d > 0 ? d : fallback;
   }
 
-  // Split every ".split" element in a scene into words so each word can pop in
+  // Split every ".split" element in a scene into words so each word can pop in.
+  // (The scenes now have their words written out in the HTML, so Studio can edit
+  // each word; this is only for text you mark with class="split" yourself.)
   function splitWords(scope) {
     scope.querySelectorAll(".split").forEach((el) => {
       const nodes = Array.from(el.childNodes);
@@ -46,18 +48,23 @@ window.HF = (() => {
     });
   }
 
-  // Decorative floating shapes: [type, x%, y%, sizePx, color, rotation]
-  // (pass elements, not id strings: HyperFrames rewrites some ids when it mounts a scene)
-  function shapes(container, specs) {
-    const c = container;
-    return specs.map(([type, x, y, size, color, rot]) => {
-      const s = document.createElement("span");
-      s.className = "shape s-" + type;
-      s.style.cssText = `left:${x}%;top:${y}%;width:${size}px;height:${size}px;color:${color};font-size:${size}px;margin:-${size / 2}px 0 0 -${size / 2}px;`;
-      s.dataset.rot = rot;
-      s.appendChild(document.createElement("i"));
-      c.appendChild(s);
-      return s;
+  // Replace a headline's words (used by the headline / call-to-action variables).
+  // Leaves the line alone when the text is unchanged, so colors you gave single
+  // words in Studio are kept.
+  function setWords(el, text) {
+    if (!el || !text) return;
+    const current = Array.from(el.querySelectorAll(".w")).map((w) => w.textContent).join(" ");
+    if (current === text.trim().replace(/\s+/g, " ")) return;
+    el.innerHTML = "";
+    text.split(/\s+/).filter(Boolean).forEach((word, i) => {
+      const m = document.createElement("span");
+      m.className = "wm";
+      const w = document.createElement("span");
+      w.className = "w";
+      w.id = `${el.id}-w${i + 1}`;
+      w.textContent = word;
+      m.appendChild(w);
+      el.appendChild(m);
     });
   }
 
@@ -90,36 +97,22 @@ window.HF = (() => {
     tl.fromTo(sel, { scale: 0.4, opacity: 0, y: 40 }, { scale: 1, opacity: 1, y: 0, duration: 0.55, ease: "back.out(2)", ...extra }, t);
 
   // Colored diagonal wipes at the start (reveal) and end (cover) of a scene.
-  // The cover at the end of one scene and the reveal at the start of the next
-  // use the same two colors, so the cut is hidden under the wipe.
-  function wipes(tl, scene, dur, inColors, outColors) {
-    const sceneId = scene.getAttribute("data-composition-id");
-    const make = (colors, tag) => {
-      const w = document.createElement("div");
-      w.className = "wipe";
-      w.id = `${sceneId}-wipe-${tag}`;
-      const panels = colors.map((c) => {
-        const p = document.createElement("b");
-        p.className = "p";
-        p.style.background = c;
-        w.appendChild(p);
-        return p;
-      });
-      scene.appendChild(w);
-      tl.set(panels, { skewX: -12 }, 0);
-      return panels;
-    };
-    if (inColors) {
-      const [a, b] = make(inColors, "in");
+  // The wipe panels are written in each scene's HTML (#<scene>-wipe-in / -out),
+  // so their colors can be changed in Studio. The cover at the end of one scene
+  // and the reveal at the start of the next use the same colors, hiding the cut.
+  function wipes(tl, dur, wipeIn, wipeOut) {
+    [wipeIn, wipeOut].forEach((w) => w && tl.set(w.querySelectorAll(".p"), { skewX: -12 }, 0));
+    if (wipeIn) {
+      const [a, b] = wipeIn.querySelectorAll(".p");
       tl.fromTo(a, { xPercent: 0 }, { xPercent: 130, duration: 0.35, ease: "power3.out" }, 0);
       tl.fromTo(b, { xPercent: 0 }, { xPercent: 130, duration: 0.3, ease: "power3.out" }, 0.03);
     }
-    if (outColors) {
-      const [a, b] = make(outColors, "out");
+    if (wipeOut) {
+      const [a, b] = wipeOut.querySelectorAll(".p");
       tl.fromTo(a, { xPercent: -130 }, { xPercent: 0, duration: 0.3, ease: "power3.in" }, dur - 0.35);
       tl.fromTo(b, { xPercent: -130 }, { xPercent: 0, duration: 0.3, ease: "power3.in" }, dur - 0.3);
     }
   }
 
-  return { BEAT, $, $$, rng, sceneDuration, splitWords, shapes, animateShapes, popWords, pop, wipes };
+  return { BEAT, $, $$, rng, sceneDuration, splitWords, setWords, animateShapes, popWords, pop, wipes };
 })();

@@ -31,13 +31,15 @@ node music/compose.mjs      # rebuild the music after changing it
 Open Studio (in a codespace it opens by itself; on your computer run `npx hyperframes preview`):
 
 - **Timeline (bottom):** one block per scene (Hook, Idea, Tools, How, Music, Tweak, Skills, Outro), plus the progress bar and the music. Drag a block to move a scene, drag its edge to make it longer or shorter, or click the eye icon to hide it. The colored wipe between scenes is part of each scene, so it moves along.
-- **Canvas (middle):** click an element to select it, then change it in the **Design** panel on the right.
+- **Canvas (middle):** click anything (a single word, a shape, a card, a title) to select it, then change it in the **Design** panel on the right: color, size, font, position and more. To recolor one word, click that word, then click the color next to **Color** and pick a new one.
 - **Variables tab (right):** change the color palette for the whole video. Open the Hook or Outro scene to change the opening headline or the final line.
 - **Compositions (left):** open a single scene on its own, so you can focus on it.
 - **Code tab:** edit the files directly inside Studio.
 - **Export (top right):** render the MP4.
 
-Studio saves your changes into the files. A few things are drawn by the scene's script, not written as plain HTML, so the Design panel may not change them. That includes the floating decoration shapes, the confetti, the equalizer bars, and the word-by-word animated headlines. Change those in the scene's file (Option 2).
+Studio saves your changes straight into the scene files. Everything you can see is written into those files with its own name (id), so it can all be selected and edited: every word, shape, card, equalizer bar, confetti piece and wipe color. The wipes only appear for a moment at each cut (for example 5.9–6.1 s); to recolor one, move the playhead onto the cut and click it. Its colors are also written in the scene file, near the bottom, under `colored wipes`. Your colors stay when the animation plays, because the animation only moves things and never repaints them.
+
+To change the headline text itself ("Make videos", "Your turn."), use the scene's Variables tab, not the canvas.
 
 The music doesn't move when you move scenes, because its build-ups and drops are timed to the original cuts. If you retime scenes a lot, ask Claude to re-time the music too.
 
