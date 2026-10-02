@@ -1,5 +1,9 @@
 # Project rules
 
+**Start here:** read `HANDOFF.md`. It has where the project stands, who the owner is
+and what they want, and the gotchas from earlier sessions. Update it at the end of
+any session that changes something important.
+
 ## Videos and motion graphics must be fully editable in HyperFrames Studio
 
 The owner builds these videos for clients and does small tweaks by hand in
